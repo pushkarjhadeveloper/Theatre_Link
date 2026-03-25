@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, Platform } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { Button } from '../../components/Button';
 import { TextInput } from '../../components/TextInput';
 import { colors } from '../../theme/colors';
 import { spacing, typography, layout } from '../../theme/theme';
 
 export const LoginScreen = () => {
+  const navigation = useNavigation<any>();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -15,7 +17,7 @@ export const LoginScreen = () => {
     // Simulate login
     setTimeout(() => {
       setLoading(false);
-      // Navigate or handle success
+      navigation.replace('MainTabs');
     }, 1500);
   };
 

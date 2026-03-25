@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList, SafeAreaView, Pressable } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { colors } from '../../theme/colors';
 import { spacing, typography, layout } from '../../theme/theme';
 
@@ -32,11 +33,15 @@ const CASTING_DATA: CastingCall[] = [
 ];
 
 const CastingCard = ({ item }: { item: CastingCall }) => {
+  const navigation = useNavigation<any>();
   return (
-    <Pressable style={({ pressed }) => [
-      styles.card,
-      pressed && styles.cardPressed
-    ]}>
+    <Pressable 
+      onPress={() => navigation.navigate('CastingDetails')}
+      style={({ pressed }) => [
+        styles.card,
+        pressed && styles.cardPressed
+      ]}
+    >
       <Text style={styles.cardTitle}>{item.title}</Text>
       <Text style={styles.cardSubtitle}>{item.company} • {item.location}</Text>
     </Pressable>
